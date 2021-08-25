@@ -24,6 +24,7 @@ class QuestionCard extends StatelessWidget {
                   .headline6
                   .copyWith(color: kBlackColor)
           ),
+          SizedBox(height: kDefaultPadding/2),
           Option(),
           Option(),
           Option(),
