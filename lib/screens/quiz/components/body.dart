@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:quiz_app/constants.dart';
+import 'package:quiz_app/controllers/question_controller.dart';
 import 'package:quiz_app/models/Questions.dart';
 import 'package:quiz_app/screens/quiz/components/progress_bar.dart';
 import 'package:quiz_app/screens/quiz/components/question_card.dart';
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    QuestionController _questionController = Get.put(QuestionController());
     return Stack(
         children: [
           SvgPicture.asset("assets/icons/bg.svg", fit: BoxFit.fill),
@@ -46,7 +49,10 @@ class Body extends StatelessWidget {
                   SizedBox(height: kDefaultPadding),
                   Expanded(
                       child: PageView.builder(
-                          itemBuilder: (context, index) => QuestionCard()
+                        itemCount: _questionController.question.length,
+                          itemBuilder: (context, index) => QuestionCard(
+                            question: _questionController.question[index],
+                          )
                       )
                   )
                 ],
